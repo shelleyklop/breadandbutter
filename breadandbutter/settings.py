@@ -1,5 +1,18 @@
 # Django settings for breadandbutter project.
 
+import sys
+import os
+from ConfigParser import RawConfigParser
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
+config = RawConfigParser()
+config.read(os.path.join(PROJECT_ROOT, 'settings.ini'))
+
+# get sensitive data from settings.ini
+DEFAULT_USER = config.get('database', 'DEFAULT_USER')
+DEFAULT_PW = config.get('database', 'DEFAULT_PW')
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -11,13 +24,14 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'breadandbutter',                      # Or path to database file if using sqlite3.
+        'USER': DEFAULT_USER,                      # Not used with sqlite3.
+        'PASSWORD': DEFAULT_PW,                  # Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+       #'HOST': 'localhost', 
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
+        },
 }
 
 # Local time zone for this installation. Choices can be found here:
@@ -27,7 +41,7 @@ DATABASES = {
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'UTC'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -118,8 +132,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'foundation',
+    'django.contrib.admin',
+    'bank',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
