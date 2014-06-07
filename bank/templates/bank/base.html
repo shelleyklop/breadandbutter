@@ -1,0 +1,132 @@
+
+
+{% load static %}
+{% load foundation_tags %}
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block meta %}{% endblock meta %}
+    {% block base_title %}
+    <title>{% block title %}Bread and Butter{% endblock title %}</title>
+    {% endblock base_title %}
+
+    {# Base Foundation CSS #}
+    {% block foundation_css %}
+    {% foundation_css "normalize" %}
+    {% foundation_css "foundation.min" %}
+    {% endblock foundation_css %}  
+    
+    {# Custom CSS #}
+    {% block css %}{% endblock css %}
+   
+    {% foundation_css 'foundation-icons' %}
+    <style>
+    .size-12 { font-size: 12px; }
+      
+      .size-14 { font-size: 14px; }
+      
+      .size-16 { font-size: 16px; }
+      
+      .size-18 { font-size: 18px; }
+      
+      .size-21 { font-size: 21px; }
+      
+      .size-24 { font-size: 24px; }
+      
+      .size-36 { font-size: 36px; }
+      
+      .size-48 { font-size: 48px; }
+      
+      .size-60 { font-size: 60px; }
+      
+      .size-72 { font-size: 72px; }
+      
+      </style>
+
+ 
+    {# Override if you need another version of modernizr #}
+    {% block foundation_modernizer %}
+    {% foundation_vendor "modernizr" %}
+    {% endblock foundation_modernizer %}
+
+    {# Custom head JS #}
+    {% block head_js %}{% endblock head_js %}
+</head>
+<body {% block body_attr %}{% endblock body_attr %}>
+
+  
+
+  <!-- Header and Nav -->
+ 
+  <div class="row">
+    <div class="large-7 columns">
+     
+     <h1><a href="/">Bread and Butter</a></h1>  
+    </div>
+    <div class="large-4 columns">
+      <ul class="button-group right">
+        <li>
+       	{% if user.is_authenticated %}
+	    	<a href="/accounts/logout/" class="button">Logout</a>
+        {% else %}
+    		<a href="/accounts/login/" class="button">Login</a>
+    	{% endif %}
+        </li>
+        <li><a href="#" class="button">Link 2</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+ 
+  <!-- End Header and Nav -->
+
+    {# Main content goes here #}
+
+  {% block base_body %}{% endblock base_body %}
+
+<!-- Footer -->
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+         
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li><a href="#">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  {# Override if you need another version of jQuery #}
+    {% block foundation_jquery %}
+    {% foundation_vendor "jquery" %}
+    {% endblock foundation_jquery %}
+
+    {# Foundation JS #}
+    {% block foundation_js %}
+    {% foundation_js %}
+    {% endblock foundation_js %}
+
+    {# Custom JS #}
+    {% block body_js %}{% endblock body_js %}
+
+    {# Init Foundation #}
+    {% block foundation_js_init %}
+    <script>
+        $(document).foundation();
+    </script>
+    {% endblock foundation_js_init %}
+</body>
+</html>

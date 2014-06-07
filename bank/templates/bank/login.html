@@ -1,0 +1,33 @@
+{% extends "bank/base.html" %}
+
+{% block base_body %}
+
+ 
+  <!-- First Band (Image) -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+      <form id="login_form" method="post" action="/accounts/login/" >
+          {% csrf_token %}
+          <div class="row">
+            <div class="large-4 medium-4 columns">
+              <label>User Name</label>
+              <input type="text" name="username" placeholder="username" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-4 medium-4 columns">
+              <label>Password</label>
+              <input name="password" type="password" placeholder="Password" />
+            </div>
+            
+    </div>
+    <input type="hidden" name="next" value="/" />
+    <input class="small button" id="submit" type="submit" value="Login" />
+  </div>
+  
+
+  
+
+
+{% endblock base_body %}
