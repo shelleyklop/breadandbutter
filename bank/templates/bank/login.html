@@ -24,7 +24,13 @@
     </div>
     <input type="hidden" name="next" value="/" />
     <input class="small button" id="submit" type="submit" value="Login" />
+    {% if form.errors %}
+      <small class="error">Your username and password didn't match. Please try again.</small>
+    {% endif %}
+
   </div>
+</form>
+
   
 
   
