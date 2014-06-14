@@ -1,4 +1,6 @@
 {% load static %}
+ 
+
 {% load foundation_tags %}
 <!doctype html>
 <html class="no-js" lang="en">
@@ -16,6 +18,7 @@
     {% foundation_css "foundation.min" %}
     {% endblock foundation_css %}  
     
+    <link rel="stylesheet" type="text/css" href="{% static 'bank/style.css' %}" />
     {# Custom CSS #}
     {% block css %}{% endblock css %}
    
@@ -44,6 +47,7 @@
       </style>
 
  
+
     {# Override if you need another version of modernizr #}
     {% block foundation_modernizer %}
     {% foundation_vendor "modernizr" %}
